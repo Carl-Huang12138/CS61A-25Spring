@@ -1,0 +1,6 @@
+'store_digits-correct', (0, 66)
+'deep_map_mut-correct', (512, 66)
+'lgk_pow-correct', (1024, 66)
+'pow-correct', (1536, 66)
+'repeatedly-cube-correct', (2048, 66)
+'cadr-caddr-correct', (2560, 66)
