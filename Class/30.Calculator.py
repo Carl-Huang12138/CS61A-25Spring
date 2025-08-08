@@ -71,5 +71,53 @@ def print_evals(expr):
                 print_evals(cur.first)
                 cur = cur.rest
 
+def after(s, a, b):
+    """Return whether b comes after a in linked list s.
+    >>> t = Link(3, Link(6, Link(5, Link(4))))
+    >>> after(t, 6, 4)
+    True
+    >>> after(t, 4, 6)
+    False
+    >>> after(t, 6, 6)
+    False
+    """
+    def find(s, n, f):
+        if s == Link.empty:
+            return False
+        elif s.first == n:
+            return f(s.rest)
+        else:
+            return find(s.rest, n, f)
+    return find(s, a, lambda rest: find(rest, b, lambda rest: True))
 
+class Link:
+    empty = ()
+    
+    def __init__(self, first, rest=empty):
+        assert rest is Link.empty or isinstance(rest, Link), "rest must be a Link or Link.empty"
+        self.first = first
+        self.rest = rest
+
+    def __str__(self):
+        string = '<'
+        current = self      
+        while current is not Link.empty:
+            string += str(current.first)
+            current = current.rest
+            if current is not Link.empty:
+                string += ', '
+        string += '>'
+        return string  
+    
+    def __repr__(self):
+        if self.rest is Link.empty:
+            return f'Link({self.first})'
+        else:
+            return f'Link({self.first}, {self.rest})'
+
+    def __len__(self):
+        if self.rest is Link.empty:
+            return 1
+        else:
+            return 1 + len(self.rest)
 
